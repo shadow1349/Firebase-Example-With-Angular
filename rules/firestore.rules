@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     match /Users/{UserId} {
-      allow create: if true;
+      allow create: if isOwner(UserId) && request.resource.data.CreatedOn == request.time;
       allow update, delete: if isOwner(UserId);
       allow read, list: if isLoggedIn();
 
