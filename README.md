@@ -17,3 +17,7 @@ and then starting the emulator by running:
 ```
 firebase emulators:start --only firestore
 ```
+
+## Angular App
+
+Please see the [README](FirebaseNoteApp/README.md) for the FirebaseNoteApp.
