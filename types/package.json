@@ -1,0 +1,23 @@
+{
+  "name": "firebasenoteapptypes",
+  "version": "0.0.4",
+  "description": "These are models that will define what our data will look like",
+  "main": "lib/index.js",
+  "scripts": {
+    "deploy": "node deploy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shadow1349/Firebase-Example-With-Angular/issues"
+  },
+  "author": "Sam Redmond",
+  "license": "ISC",
+  "dependencies": {
+    "await-spawn": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  }
+}
