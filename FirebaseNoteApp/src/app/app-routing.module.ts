@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from 'src/app/services';
+
 const routes: Routes = [
   { path: '', redirectTo: '/main/notes', pathMatch: 'full' },
-  { path: 'main', loadChildren: () => import('./main/main.module').then(mod => mod.MainModule) },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then(mod => mod.MainModule),
+    canActivate: [AuthGuard]
+  },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule) },
   {
     path: '404',
