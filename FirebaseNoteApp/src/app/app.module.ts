@@ -1,16 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { environment } from './../environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { environment } from './../environments/environment';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AuthGuard, AuthService } from './services';
+import { AuthGuard, AuthService, NotesService, UserService } from './services';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { AuthGuard, AuthService } from './services';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, NotesService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
