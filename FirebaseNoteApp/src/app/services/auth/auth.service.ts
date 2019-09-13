@@ -38,7 +38,7 @@ export class AuthService {
           .set(user)
           .then(() => {
             this.router.navigate(['/main/notes']);
-          });
+          }).catch(e => console.log(e));
       })
       .catch(e => this.showError(e));
   }
@@ -53,6 +53,7 @@ export class AuthService {
   }
 
   private showError(e: any) {
+    console.log(e);
     const index = Errors.findIndex(x => x.code === e.code);
 
     if (index !== -1) {
