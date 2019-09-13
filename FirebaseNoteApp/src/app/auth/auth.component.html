@@ -1,3 +1,13 @@
-<p>auth works!</p>
-
-<router-outlet></router-outlet>
+<mat-sidenav-container class="auth-sidenav">
+  <mat-sidenav-content>
+    <div class="auth-background">
+      <div layout="row" layout-align="center start" class="auth-row">
+        <div class="auth-container">
+          <mat-card class="md-padding">
+            <router-outlet></router-outlet>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,1 +1,32 @@
-<p>sign-in works!</p>
+<div layout="column" class="md-padding">
+  <h2>Sign In to the Firebase Note App</h2>
+  <form [formGroup]="signInForm" layout="column" (submit)="signIn()">
+    <mat-form-field flex appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" formControlName="email" required />
+      <mat-error
+        *ngIf="
+          signInForm.get('email').hasError('required') ||
+          signInForm.get('email').hasError('email')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field flex appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required />
+      <mat-error *ngIf="signInForm.get('password').hasError('required')">
+        Please enter your password
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" [disabled]="!signInForm.valid">
+      Sign In
+    </button>
+  </form>
+
+  <p>
+    Don't have an account? Register <a [routerLink]="['/auth/sign-up']">here</a>
+  </p>
+</div>

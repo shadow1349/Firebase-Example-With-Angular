@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IUser } from 'firebasenoteapptypes';
+import Swal from 'sweetalert2';
+import { Errors } from './errors';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,8 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         this.router.navigate(['/main/notes']);
-      });
+      })
+      .catch(e => this.showError(e));
   }
 
   signUp(user: IUser, password: string) {
@@ -27,6 +30,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(user.Email, password)
       .then(userCredential => {
         user.CreatedOn = Date.now();
+        user.Id = userCredential.user.uid;
 
         return this.db
           .collection('Users')
@@ -35,12 +39,31 @@ export class AuthService {
           .then(() => {
             this.router.navigate(['/main/notes']);
           });
-      });
+      })
+      .catch(e => this.showError(e));
   }
 
   signOut() {
-    return this.auth.auth.signOut().then(() => {
-      this.router.navigate(['/auth/sign-in']);
-    });
+    return this.auth.auth
+      .signOut()
+      .then(() => {
+        this.router.navigate(['/auth/sign-in']);
+      })
+      .catch(e => this.showError(e));
+  }
+
+  private showError(e: any) {
+    const index = Errors.findIndex(x => x.code === e.code);
+
+    if (index !== -1) {
+      const err = Errors[index];
+      Swal.fire(err.title, err.message, 'error');
+    } else {
+      Swal.fire(
+        'Oops, something went wrong!',
+        `We couldn's complete your request at this time. Please try again later`,
+        'error'
+      );
+    }
   }
 }

@@ -1,0 +1,54 @@
+.auth-container {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+  max-width: 50%;
+
+  // this will catch tablets
+  @media only screen and (max-width: 960px) {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    display: flex;
+    max-width: 90%;
+  }
+
+  // this will catch mobile phones
+  @media only screen and (max-width: 450px) {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    display: flex;
+    max-width: 100%;
+  }
+}
+
+.auth-row {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  max-height: 100%;
+  place-content: flex-start center;
+  align-items: flex-start;
+  padding-top: 1.5rem;
+}
+
+.auth-sidenav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.auth-background {
+  background: grey;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-size: cover;
+  background-position: top center;
+  min-height: calc(100vh + 100px);
+  height: auto;
+}
