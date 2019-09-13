@@ -1,1 +1,17 @@
-<p>notes works!</p>
+<div *ngIf="user | async as User">
+  <button mat-raised-button color="accent" (click)="newNote = true">
+    Create Note
+  </button>
+
+  <h2 *ngIf="User.NumNotes === 0">Looks like there are no notes to display</h2>
+  <h2 *ngIf="User.NumNotes > 0">You have {{ User.NumNotes }} notes</h2>
+
+  <app-note *ngIf="newNote" (update)="createNote($event, User.Id)"></app-note>
+
+  <app-note
+    *ngFor="let note of notes | async"
+    [note]="note"
+    (update)="updateNote($event)"
+    (delete)="deleteNote($event)"
+  ></app-note>
+</div>

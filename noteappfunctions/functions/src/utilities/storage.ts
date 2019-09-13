@@ -23,8 +23,8 @@ export function GetFilePath(url: string) {
 }
 
 export async function checkStorageItemsAndDeleteOldFile(params: {
-  before: string;
-  after: string;
+  before?: string;
+  after?: string;
 }) {
   // Make sure that both before and after logo image are not undefined
   if (params.before !== undefined && params.after !== undefined) {

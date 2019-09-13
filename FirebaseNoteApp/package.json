@@ -24,7 +24,7 @@
     "@angular/router": "~8.2.5",
     "@covalent/core": "^2.1.1",
     "firebase": "^6.6.0",
-    "firebasenoteapptypes": "0.0.4",
+    "firebasenoteapptypes": "0.0.5",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.4.0",
     "sweetalert2": "^8.17.1",

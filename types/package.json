@@ -1,6 +1,6 @@
 {
   "name": "firebasenoteapptypes",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "These are models that will define what our data will look like",
   "main": "lib/index.js",
   "scripts": {

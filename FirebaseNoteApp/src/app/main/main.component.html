@@ -1,3 +1,58 @@
-<p>main works!</p>
+<div class="main-container">
+  <!-- SIDENAV CONTAINER -->
+  <mat-sidenav-container class="sidenav-container" *ngIf="user | async as User">
+    <!-- SIDENAV -->
+    <mat-sidenav
+      #mainSidenav
+      class="sidenav-shadow"
+      [opened]="windowWidth > breakWidth"
+      [mode]="windowWidth >= breakWidth ? 'side' : 'over'"
+      position="start"
+      [fixedInViewport]="windowWidth > breakWidth"
+    >
+      <mat-toolbar color="primary">
+        <span>{{ User.FirstName }} {{ User.LastName }}</span>
+      </mat-toolbar>
 
-<router-outlet></router-outlet>
+      <mat-nav-list>
+        <mat-list-item [routerLink]="['/main/notes']">
+          <mat-icon color="accent">note</mat-icon>
+          <h3>Notes</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/main/profile']">
+          <mat-icon color="accent">account_circle</mat-icon>
+          <h3>Profile</h3>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- ./SIDENAV -->
+
+    <!-- CONTENT -->
+    <mat-sidenav-content>
+      <!-- PRIMARY TOOLBAR -->
+      <mat-toolbar color="primary">
+        <button
+          *ngIf="windowWidth < breakWidth"
+          mat-icon-button
+          (click)="mainSidenav.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Note App</span>
+        <span flex></span>
+        <button mat-icon-button color="accent" (click)="signOut()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </mat-toolbar>
+      <!-- ./PRIMARY TOOLBAR -->
+
+      <!-- MAIN CONTENT -->
+      <div class="md-padding">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- ./MAIN CONTENT -->
+    </mat-sidenav-content>
+    <!-- ./CONTENT -->
+  </mat-sidenav-container>
+  <!-- ./SIDENAV CONTAINER -->
+</div>

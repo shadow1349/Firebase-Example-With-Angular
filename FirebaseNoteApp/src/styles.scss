@@ -10,3 +10,11 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
 @include covalent-theme($theme);
+
+/**
+ * Material Extensions
+ */
+
+.mat-drawer-side {
+  border: none;
+}

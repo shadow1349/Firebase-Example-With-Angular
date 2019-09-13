@@ -1,0 +1,62 @@
+<mat-card class="md-margin">
+  <mat-toolbar [style.background]="'none'" *ngIf="note !== undefined">
+    <span flex>{{ note.Title }}</span>
+    <button mat-icon-button color="warn" (click)="deleteNote()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div layout="column" *ngIf="noteForm.disabled" class="md-padding">
+    <p>{{ note.Note }}</p>
+    <p [style.color]="'lightgrey'">created on {{ note.CreatedOn | date }}</p>
+  </div>
+  <form
+    [formGroup]="noteForm"
+    (submit)="updateNote($event)"
+    layout="column"
+    *ngIf="noteForm.enabled"
+    class="md-padding"
+  >
+    <mat-form-field appearance="outline" flex>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Give this note a title"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" flex>
+      <mat-label>Note</mat-label>
+      <textarea
+        matInput
+        formControlName="note"
+        placeholder="Type up your note"
+      ></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent">
+      {{ note !== undefined ? "Update Note" : "Create Note" }}
+    </button>
+    <button mat-raised-button *ngIf="note !== undefined">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="note === undefined"
+      (click)="cancelNewNote()"
+    >
+      Cancel
+    </button>
+  </form>
+
+  <div layout="column" class="md-padding">
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="noteForm.disabled"
+      (click)="noteForm.enable()"
+    >
+      Update Note
+    </button>
+  </div>
+</mat-card>
