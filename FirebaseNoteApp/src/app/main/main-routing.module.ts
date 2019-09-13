@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
@@ -9,7 +9,13 @@ const routes: Routes = [
     children: [
       {
         path: 'notes',
-        loadChildren: () => import('./notes/notes.module').then(mod => mod.NotesModule)
+        loadChildren: () =>
+          import('./notes/notes.module').then(mod => mod.NotesModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./profile/profile.module').then(mod => mod.ProfileModule)
       }
     ]
   }
