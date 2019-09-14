@@ -1,1 +1,87 @@
-<p>profile works!</p>
+<mat-card *ngIf="user | async as User">
+  <mat-toolbar color="accent">
+    Your Profile
+  </mat-toolbar>
+  <div layout="column" layout-align="center center">
+    <img
+      [style.margin-top.px]="'10'"
+      [style.margin-bottom.px]="'10'"
+      class="profilePhoto"
+      src="{{
+        User.ProfilePhoto === '' ? '/assets/profile.png' : User.ProfilePhoto
+      }}"
+    />
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="profilePhotoInput.click()"
+    >
+      Upload a new profile photo
+      <mat-icon>file_upload</mat-icon>
+    </button>
+    <input
+      class="file-input"
+      type="file"
+      #profilePhotoInput
+      (change)="uploadProfilePhoto($event.target.files, User.Id)"
+    />
+  </div>
+
+  <mat-toolbar [style.background]="'white'">
+    <span flex>{{ User.FirstName }} {{ User.LastName }}</span>
+    <button
+      mat-icon-button
+      color="primary"
+      *ngIf="profileForm.disabled"
+      (click)="profileForm.enable()"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      color="warn"
+      *ngIf="profileForm.enabled"
+      (click)="profileForm.disable()"
+    >
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="md-padding" layout="column">
+    <form
+      [formGroup]="profileForm"
+      layout="column"
+      (submit)="updateName(User.Id)"
+    >
+      <div layout="column" layout-gt-sm="row">
+        <mat-form-field appearance="outline" flex>
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" formControlName="firstName" required />
+          <mat-error *ngIf="profileForm.get('firstName').hasError('required')">
+            Please enter a first name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" flex>
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="lastName" required />
+          <mat-error *ngIf="profileForm.get('lastName').hasError('required')">
+            Please enter a last name
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button color="primary" *ngIf="profileForm.enabled">
+        Update Profile
+      </button>
+    </form>
+
+    <button
+      [style.margin-top.px]="'10'"
+      [style.margin-bottom.px]="'10'"
+      mat-raised-button
+      color="accent"
+      (click)="changePassword(User.Email)"
+    >
+      Send Password Reset Email
+    </button>
+  </div>
+</mat-card>

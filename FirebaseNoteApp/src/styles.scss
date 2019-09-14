@@ -11,6 +11,13 @@ $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 @include covalent-theme($theme);
 
+.profilePhoto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #2196f3;
+}
+
 /**
  * Material Extensions
  */

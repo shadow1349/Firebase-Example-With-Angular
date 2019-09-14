@@ -25,11 +25,16 @@ export const UserUpdated = functions.firestore
       before.ProfilePhoto !== after.ProfilePhoto ||
       before.Disabled !== after.Disabled
     ) {
-      await admin.auth().updateUser(context.params.UserId, {
+      const data: admin.auth.UpdateRequest = {
         displayName: `${after.FirstName} ${after.LastName}`,
-        photoURL: after.ProfilePhoto,
         disabled: after.Disabled
-      });
+      };
+
+      if (after.ProfilePhoto) {
+        data.photoURL = after.ProfilePhoto;
+      }
+
+      await admin.auth().updateUser(context.params.UserId, data);
     }
 
     return checkStorageItemsAndDeleteOldFile({

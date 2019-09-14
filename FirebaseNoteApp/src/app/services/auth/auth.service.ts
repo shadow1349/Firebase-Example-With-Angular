@@ -38,7 +38,8 @@ export class AuthService {
           .set(user)
           .then(() => {
             this.router.navigate(['/main/notes']);
-          }).catch(e => console.log(e));
+          })
+          .catch(e => console.log(e));
       })
       .catch(e => this.showError(e));
   }
@@ -48,6 +49,19 @@ export class AuthService {
       .signOut()
       .then(() => {
         this.router.navigate(['/auth/sign-in']);
+      })
+      .catch(e => this.showError(e));
+  }
+
+  changePassword(email: string) {
+    this.auth.auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        Swal.fire(
+          'Check your email',
+          'For youur security, we have sent you an email with a password reset link',
+          'success'
+        );
       })
       .catch(e => this.showError(e));
   }
