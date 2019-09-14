@@ -35,6 +35,10 @@ If you want to fork this repo and implement this in your own Firebase project, m
 
 ```
 
-You must do this for `FirebaseNoteApp`, `noteappfunctions`, and `rules`.
+You must do this for `FirebaseNoteApp`, `noteappfunctions`, and `rules`. 
+
+If you want to deploy the types to NPM, you'll have to change the package name, but otherwise you can just use the package I've already deployed. If you want some changes to the types feel free to post a PR.
+
+## Posting issues
 
 If you have any issues reproducing the app, feel free to post an issue in the repo. I don't care what format you use so long as you explain things clearly so I know what you're talking about.
